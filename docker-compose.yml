@@ -1,0 +1,26 @@
+version: "3"
+services:
+    mysql:
+        container_name: lx-mysql
+        image: boudewijn00/mysql:latest
+        volumes:
+            - lx-mysql:/var/lib/mysql
+        environment:
+            MARIADB_DATABASE: lx-db
+            MARIADB_ROOT_PASSWORD: root
+            MARIADB_USER: lx-user
+            MARIADB_PASSWORD: lx-password
+        ports:
+            - 13306:3306
+    redis:
+        container_name: lx-redis
+        image: redis:latest
+        ports:
+            - 16379:6379
+        volumes:
+            - lx-redis:/data
+volumes:
+    lx-mysql:
+        driver: "local"
+    lx-redis:
+        driver: "local"
